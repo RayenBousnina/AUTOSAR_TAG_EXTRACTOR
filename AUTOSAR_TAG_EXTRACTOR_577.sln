@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AUTOSAR_TAG_EXTRACTOR_577", "AUTOSAR_TAG_EXTRACTOR_577.csproj", "{A3F24C0C-3537-44C7-8187-C78843096A5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3F24C0C-3537-44C7-8187-C78843096A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F24C0C-3537-44C7-8187-C78843096A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F24C0C-3537-44C7-8187-C78843096A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F24C0C-3537-44C7-8187-C78843096A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09F8D934-9258-44DF-A326-EEA78D41396D}
+	EndGlobalSection
+EndGlobal

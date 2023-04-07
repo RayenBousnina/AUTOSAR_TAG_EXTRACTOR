@@ -1,0 +1,78 @@
+
+
+
+    <AR-PACKAGE>
+      <SHORT-NAME>Package_Diagnostic</SHORT-NAME>
+      <ELEMENTS>
+        <DIAGNOSTIC-CONTRIBUTION-SET>
+          <SHORT-NAME>DiagContributionSet</SHORT-NAME>
+          <CATEGORY>DiagContributionSet</CATEGORY>
+          <ELEMENTS >
+		    <!-- ici on liste tout les element de diagnostic (did routine dtc ... )-->
+            <DIAGNOSTIC-COMMON-ELEMENT-REF-CONDITIONAL>
+              <DIAGNOSTIC-COMMON-ELEMENT-REF DEST="DIAGNOSTIC-DATA-IDENTIFIER">/Package_Diagnostic/DID_1</DIAGNOSTIC-COMMON-ELEMENT-REF>
+            </DIAGNOSTIC-COMMON-ELEMENT-REF-CONDITIONAL>
+            <DIAGNOSTIC-COMMON-ELEMENT-REF-CONDITIONAL>
+              <DIAGNOSTIC-COMMON-ELEMENT-REF DEST="DIAGNOSTIC-READ-DATA-BY-IDENTIFIER">/Package_Diagnostic/DID_1_Read</DIAGNOSTIC-COMMON-ELEMENT-REF>
+            </DIAGNOSTIC-COMMON-ELEMENT-REF-CONDITIONAL>
+            <DIAGNOSTIC-COMMON-ELEMENT-REF-CONDITIONAL>
+              <DIAGNOSTIC-COMMON-ELEMENT-REF DEST="DIAGNOSTIC-WRITE-DATA-BY-IDENTIFIER">/Package_Diagnostic/DID_1_Write</DIAGNOSTIC-COMMON-ELEMENT-REF>
+            </DIAGNOSTIC-COMMON-ELEMENT-REF-CONDITIONAL>
+          </ELEMENTS>
+        </DIAGNOSTIC-CONTRIBUTION-SET>
+		
+		<!-- exemple de creation d un did -->
+		<DIAGNOSTIC-DATA-IDENTIFIER>
+          <SHORT-NAME>DID_1</SHORT-NAME>
+          <ID>1234</ID>  <!-- l'identifient -->
+          <DATA-ELEMENTS>
+            <DIAGNOSTIC-PARAMETER>
+              <BIT-OFFSET>0</BIT-OFFSET>
+              <DATA-ELEMENTS>
+                <DIAGNOSTIC-DATA-ELEMENT >
+                  <SHORT-NAME>DID_1</SHORT-NAME>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <MAX-NUMBER-OF-ELEMENTS>1</MAX-NUMBER-OF-ELEMENTS> <!-- la taille = ce parametre x size type (exemple si on veut un did a 2octet donc soit on met ici 2, soit on utilise uint16)-->
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Package_Types/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </DIAGNOSTIC-DATA-ELEMENT>
+              </DATA-ELEMENTS>
+            </DIAGNOSTIC-PARAMETER>
+          </DATA-ELEMENTS>
+        </DIAGNOSTIC-DATA-IDENTIFIER>
+		
+		<!-- definition de la table de diag -->
+        <DIAGNOSTIC-SERVICE-TABLE >
+          <SHORT-NAME>DIAG_ServicesTable</SHORT-NAME>
+          <DIAGNOSTIC-CONNECTIONS>
+            <DIAGNOSTIC-CONNECTION-REF-CONDITIONAL>
+              <DIAGNOSTIC-CONNECTION-REF DEST="DIAGNOSTIC-CONNECTION">/Package_Diagnostic/DiagConnection</DIAGNOSTIC-CONNECTION-REF> <!-- la diag connection sert a definir le couple d'identifiant can a utiliser -->
+            </DIAGNOSTIC-CONNECTION-REF-CONDITIONAL>
+          </DIAGNOSTIC-CONNECTIONS>
+          <ECU-INSTANCE-REF DEST="ECU-INSTANCE">/Network/ECUs/MyEcu</ECU-INSTANCE-REF>
+          <PROTOCOL-KIND>DCM_UDS_ON_CAN</PROTOCOL-KIND>
+          <SERVICE-INSTANCE-REFS>
+            <SERVICE-INSTANCE-REF DEST="DIAGNOSTIC-READ-DATA-BY-IDENTIFIER">/Package_Diagnostic/DID_1_Read</SERVICE-INSTANCE-REF> <!-- on donne laccees en read sur le did -->
+            <SERVICE-INSTANCE-REF DEST="DIAGNOSTIC-WRITE-DATA-BY-IDENTIFIER">/Package_Diagnostic/DID_1_Write</SERVICE-INSTANCE-REF> <!-- on donne laccees en write sur le did -->
+          </SERVICE-INSTANCE-REFS>
+        </DIAGNOSTIC-SERVICE-TABLE >
+		
+		<DIAGNOSTIC-READ-DATA-BY-IDENTIFIER >
+          <SHORT-NAME>DID_1_Read</SHORT-NAME>
+          <ACCESS-PERMISSION-REF DEST="DIAGNOSTIC-ACCESS-PERMISSION">/Package_Diagnostic/DiagnosticSession</ACCESS-PERMISSION-REF>
+          <DATA-IDENTIFIER-REF DEST="DIAGNOSTIC-DATA-IDENTIFIER">/Package_Diagnostic/DID_1</DATA-IDENTIFIER-REF>
+          <READ-CLASS-REF DEST="DIAGNOSTIC-READ-DATA-BY-IDENTIFIER-CLASS">/Package_Diagnostic/RDBI_Class</READ-CLASS-REF>
+        </DIAGNOSTIC-READ-DATA-BY-IDENTIFIER>
+		<DIAGNOSTIC-WRITE-DATA-BY-IDENTIFIER >
+          <SHORT-NAME>DID_1_Write</SHORT-NAME>
+          <ACCESS-PERMISSION-REF DEST="DIAGNOSTIC-ACCESS-PERMISSION">/Package_Diagnostic/DiagnosticSession</ACCESS-PERMISSION-REF>
+          <DATA-IDENTIFIER-REF DEST="DIAGNOSTIC-DATA-IDENTIFIER">/Package_Diagnostic/DID_1</DATA-IDENTIFIER-REF>
+          <WRITE-CLASS-REF DEST="DIAGNOSTIC-WRITE-DATA-BY-IDENTIFIER-CLASS">/Package_Diagnostic/WDBI_Class</WRITE-CLASS-REF>
+        </DIAGNOSTIC-WRITE-DATA-BY-IDENTIFIER>
+      </ELEMENTS>
+    </AR-PACKAGE>

@@ -15,10 +15,10 @@ namespace AUTOSAR_TAG_EXTRACTOR_577
             extractTagFromARXMLbyStackWord();
             Console.ReadLine();
         }
-        const string xmlFile = @"C:\Users\Rayen\source\repos\AUTOSAR_4-3-0_STRICT_COMPACT.xsd";
+        const string xsdFile = @"C:\Users\Rayen\source\repos\AUTOSAR_4-3-0_STRICT_COMPACT.xsd";
         static void extractTagFromARXMLbyStackWord()
         {
-            XDocument xdoc = XDocument.Load(xmlFile);
+            XDocument xdoc = XDocument.Load(xsdFile);
             while (true)
             {
                 Console.WriteLine("please insert the keyWord: ");
